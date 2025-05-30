@@ -1,0 +1,308 @@
+/* Importação de fonte e variáveis */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+:root {
+  --bg: #0a0a0a;
+  --text-primary: #f0f0f0;
+  --text-secondary: #bbb;
+  --accent: #b00020;
+  --accent-light: #d62231;
+  --card-bg: #1a1a1a;
+  --shadow: rgba(176, 0, 32, 0.4);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Vídeo de fundo nostálgico */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 1;
+  filter: grayscale(70%) sepia(30%) brightness(0.4) contrast(1.1) blur(1px);
+  pointer-events: none;
+}
+
+/* Ruído tipo TV antiga */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.015),
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+header {
+  background-color: #111;
+  border-bottom: 2px solid var(--accent);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--accent);
+  letter-spacing: 3px;
+  user-select: none;
+  transition: color 0.3s ease;
+  cursor: default;
+}
+
+.logo:hover {
+  color: var(--accent-light);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+nav a:hover,
+nav a:focus {
+  color: var(--accent-light);
+}
+
+nav a:hover::after,
+nav a:focus::after {
+  width: 100%;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+  text-align: center;
+  padding: 0 24px;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  color: var(--accent);
+  max-width: 700px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px var(--shadow);
+  cursor: pointer;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  box-shadow: 0 10px 40px var(--shadow);
+  transform: translateY(-10px) scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+  color: var(--accent-light);
+  font-weight: 600;
+}
+
+.card p {
+  color: var(--text-secondary);
+  font-weight: 300;
+  font-size: 0.95rem;
+}
+
+section {
+  padding: 80px 0;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  color: var(--accent-light);
+  border-bottom: 3px solid var(--accent);
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+input,
+textarea {
+  background-color: #222;
+  border: none;
+  padding: 14px 16px;
+  border-radius: 10px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 300;
+  resize: vertical;
+  transition: background-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  background-color: #2b2b2b;
+}
+
+button {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover,
+button:focus {
+  background-color: var(--accent-light);
+  outline: none;
+}
+
+footer {
+  background-color: #111;
+  padding: 24px 0;
+  color: #777;
+  font-weight: 300;
+  text-align: center;
+  border-top: 2px solid var(--accent);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  nav ul {
+    gap: 16px;
+  }
+}
+
